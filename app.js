@@ -20,7 +20,7 @@ function showData() {
                     <td>${user.name}</td>
                     <td>${user.email}</td>
                     <td>${user.phone}</td>
-                    <td class= "text-center"><button class=" me-3 btn btn-danger" onclick="alerta(${index})">Eliminar</button><button class="btn btn-warning" onclick="editData(${index})">Editar</button></td>
+                    <td class= "text-center"><button class=" me-3 btn btn-danger" onclick="deleteData(${index})">Eliminar</button><button class="btn btn-warning" onclick="editData(${index})">Editar</button></td>
                   </tr>
         `
     });
@@ -84,10 +84,6 @@ function editData(index) {
     }
 }
 
-function alerta(){
-    if (window.confirm("¿Deseas borrar esta fila?"));
-    deleteData();
-}
 function deleteData(index){
 
     let usersList;
