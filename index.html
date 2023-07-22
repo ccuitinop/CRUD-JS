@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CRUD JAVASCRIPT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="estilos.css">
+  </head>
+  <body>
+    <header class="hero">
+        <div class="container">
+            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+              <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+                <span class="fs-4 clase1">Golden Trust Brokers</span>
+              </a>
+        
+              <ul class="nav nav-pills">
+                <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Quiénes Somos</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Nuestros Proyectos</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Inmobiliarias</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Agenda una Reunión</a></li>
+              </ul>
+            </header>
+          </div>
+        <div class="textos-hero">
+            <h1>Golden Trust Brokers</h1>
+            <p>Inversión innmobiliaria al alcance de tus manos</p>
+            <a href="#Contacto">Contáctanos</a>           
+        </div>
+        
+        <div class="svg-hero"style="height: 150px; overflow: hidden;" >
+            <svg viewBox="0 0 500 150" preserveAspectRatio="none" 
+                 style="height: 100%; width: 100%;">
+                 <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" 
+                     style="stroke: none; fill: #fff;"></path>
+            </svg>
+        </div>
+    </header>
+
+
+    <div class="container text-center">
+        <h1>¡REGÍSTRATE COMO CLIENTE ACÁ!</h1>
+    </div>
+    <div class="container">
+        <div class="container mb-5">
+            <div class="row">
+                <form>
+                    <div class="mb-3">
+                      <label class="form-label">Correo Electronico</label>
+                      <input type="email" class="form-control" id="inputEmail" placeholder="Correo Electrónico"> 
+                      
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Nombre Completo</label>
+                      <input type="text" class="form-control" id="inputName" placeholder="Nombre Completo">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Telefono</label>
+                      <input type="number" class="form-control" id="inputPhone" placeholder="Teléfono">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="btnAdd" onclick="AddData()">Enviar Datos</button>
+                    <button type="submit" class="btn btn-primary" id="btnUpdate">Actualizar Datos</button>
+                </form>
+            </div>
+            <hr>
+            <table class="table table-bordered" id="tableData"> 
+                <thead>
+                    <tr>
+                        <th>Correo</th>
+                        <th>Nombre Completo</th>
+                        <th>Telefono</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+    
+                </tbody>  
+            </table>
+        </div>
+    </div>
+
+    <div class="container">
+        <footer class="py-3 my-4">
+          <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Quiénes somos</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Nuestros Proyectos</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Inmobiliarias</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Agenda una reunión</a></li>
+          </ul>
+          <p class="text-center text-body-secondary">&copy; 2023 Company, Inc</p>
+        </footer>
+      </div>
+    
+    <script src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  </body>
+</html>
