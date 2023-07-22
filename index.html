@@ -43,43 +43,48 @@
 
 
     <div class="container text-center">
-        <h1>¡REGÍSTRATE COMO CLIENTE ACÁ!</h1>
+        <h1 class="title">¡REGÍSTRATE COMO CLIENTE ACÁ!</h1>
     </div>
     <div class="container">
         <div class="container mb-5">
             <div class="row">
-                <form>
+                <form onsubmit="addData(event)">
                     <div class="mb-3">
                       <label class="form-label">Correo Electronico</label>
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Correo Electrónico"> 
+                      <input type="email" class="form-control" id="email" placeholder="Correo Electrónico"> 
                       
                     </div>
                     <div class="mb-3">
                       <label class="form-label">Nombre Completo</label>
-                      <input type="text" class="form-control" id="inputName" placeholder="Nombre Completo">
+                      <input type="text" class="form-control" id="name" placeholder="Nombre Completo">
                     </div>
                     <div class="mb-3">
                       <label class="form-label">Telefono</label>
-                      <input type="number" class="form-control" id="inputPhone" placeholder="Teléfono">
+                      <input type="number" class="form-control" id="phone" placeholder="Teléfono">
                     </div>
-                    <button type="submit" class="btn btn-primary" id="btnAdd" onclick="AddData()">Enviar Datos</button>
-                    <button type="submit" class="btn btn-primary" id="btnUpdate">Actualizar Datos</button>
+                    <input type="submit" value="Agregar" id="add-btn" class="btn btn-success" >
+                    <input type="submit" value="Actualizar" id="edit-btn" style="display: none;" class="btn btn-warning" >
+                    <!--button type="submit" class="btn btn-primary" id="btnAdd" onclick="AddData()">Enviar Datos</!--button>
+                    <button!-- type="submit" class="btn btn-primary" id="btnUpdate">Actualizar Datos</button!-->
                 </form>
             </div>
             <hr>
-            <table class="table table-bordered" id="tableData"> 
+
+            <table class="table">
                 <thead>
-                    <tr>
-                        <th>Correo</th>
-                        <th>Nombre Completo</th>
-                        <th>Telefono</th>
-                        <th>Acciones</th>
-                    </tr>
+                  <tr>
+                    <th scope="col">Nombre completo</th>
+                    <th scope="col">Correo Electrónico</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col" class="text-center">Acciones</th>
+                  </tr>
                 </thead>
                 <tbody>
-    
-                </tbody>  
-            </table>
+                </tbody>
+              </table>
+
+
+
         </div>
     </div>
 

@@ -1,145 +1,109 @@
-function ValidateForm(){
-
-    let email = document.getElementById('inputEmail').value;
-    let name = document.getElementById('inputName').value;
-    let phone = document.getElementById('inputPhone').value;
-
-    if (email == ""){
-        alert('El campo correo es requerido');
-        return false;
-    }else if(!email.includes('@')){
-        alert('El correo no es válido');
-        return false;
+class Usuario {
+    constructor(name, email, phone){
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
     }
-
-    if (name == "") {
-        alert('El campo nombre es requerido');
-        return false;
-    }
-
-    if (phone == "") {
-        alert('El campo teléfono es requerido');
-        return false;
-    }
-
-    return true;
 }
 
-    
-//Read
-function ReadData(){
-
-    let listPeople;
-
-    if (localStorage.getItem('listPeople') == null) {
-        listPeople = [];
-    }else{
-        listPeople = JSON.parse(localStorage.getItem('listPeople'));
+function showData() {
+    let usersList;
+    if (localStorage.getItem("usersList") === null) {
+        usersList = []
+    } else {
+        usersList = JSON.parse(localStorage.getItem("usersList"))
     }
-
-    var  html = "";
-
-    listPeople.forEach(function(element, index) {
-        html += "<tr>";
-        html += "<td>" + element.email + "</td>";
-        html += "<td>" + element.name + "</td>";
-        html += "<td>" + element.phone + "</td>"; 
-        html += '<td><button onclick="deleteData('+ index +')" class="btn btn-danger">Eliminar Dato</button> <button onclick="editData('+ index +')" class="btn btn-warning">Editar Dato</button>';
-        html += "</tr>";
-             
+    let html = "";
+    usersList.forEach((user, index) => {
+        html += `
+        <tr class="fila">
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${user.phone}</td>
+                    <td class= "text-center"><button class=" me-3 btn btn-danger" onclick="alerta(${index})">Eliminar</button><button class="btn btn-warning" onclick="editData(${index})">Editar</button></td>
+                  </tr>
+        `
     });
-
-    document.querySelector('#tableData').innerHTML = html;
+    document.querySelector('tbody').innerHTML = html;
 }
 
-document.onload = ReadData();
+document.onload = showData()
 
-function AddData(){
-    if(ValidateForm() == true ){
-        let email = document.getElementById('inputEmail').value;
-        let name = document.getElementById('inputName').value;
-        let phone = document.getElementById('inputPhone').value;
+function addData(event) {
+    event.preventDefault();
+    let name = document.querySelector('#name').value;
+    let email = document.querySelector('#email').value;
+    let phone = document.querySelector('#phone').value;
 
-        var listPeople;
+    if (name === "" || email === "") return;
 
-        if (localStorage.getItem('listPeople') == null) {
-            listPeople = [];
-        }else{
-            listPeople =JSON.parse(localStorage.getItem('listPeople'));
-        }
-
-        listPeople.push({
-            email: email;
-            name: name;
-            phone: phone;
-        })
-
-
-        localStorage.setItem('listPeople', JSON.stringify(listPeople));
-
-
-        ReadData();
-
-        document.getElementById('inputEmail').value= "";
-        document.getElementById('inputName').value= "";
-        document.getElementById('inputPhone').value= "";
+    const usuario = new Usuario(name, email, phone); // {name: 'matias', email: 'blabla}
+    console.log(usuario)
+    let usersList;
+    if (localStorage.getItem("usersList") === null) {
+        usersList = []
+    } else {
+        usersList = JSON.parse(localStorage.getItem("usersList"))
     }
+    usersList.push(usuario)
+    localStorage.setItem("usersList", JSON.stringify(usersList))
+    showData()
 
+    document.querySelector('#name').value = ""
+    document.querySelector('#email').value = ""
+    document.querySelector('#phone').value = ""
 }
 
+function editData(index) {
+    document.getElementById('add-btn').style.display = 'none';
+    document.getElementById('edit-btn').style.display = 'block';
+
+    let usersList;
+    if (localStorage.getItem("usersList") === null) {
+        usersList = []
+    } else {
+        usersList = JSON.parse(localStorage.getItem("usersList"))
+    }
+    document.querySelector('#name').value = usersList[index].name;
+    document.querySelector('#email').value = usersList[index].email;
+    document.querySelector('#phone').value = usersList[index].phone;
+
+    document.getElementById('edit-btn').onclick = function () {
+        usersList[index].name = document.querySelector('#name').value
+        usersList[index].email = document.querySelector('#email').value
+        usersList[index].phone = document.querySelector('#phone').value
+
+        localStorage.setItem("usersList", JSON.stringify(usersList));
+        showData();
+        document.querySelector('#name').value = ""
+        document.querySelector('#email').value = ""
+        document.querySelector('#phone').value = ""
+
+        document.getElementById('add-btn').style.display = 'block';
+        document.getElementById('edit-btn').style.display = 'none';
+    }
+}
+
+function alerta(){
+    if (window.confirm("¿Deseas borrar esta fila?"));
+    deleteData();
+}
 function deleteData(index){
 
-    let listPeople;
+    let usersList;
 
-    if (localStorage.getItem('listPeople') == null) {
-        listPeople = [];
+    if (localStorage.getItem('usersList') == null) {
+        usersList = [];
 
     }else{
-        listPeople = JSON.parse(localStorage.getItem('listPeople'));
+        usersList = JSON.parse(localStorage.getItem('usersList'));
     }
 
-    listPeople.splice(index, 1):
-    localStorage.setItem('listPeople', JSON.stringify(listPeople));
+    usersList.splice(index, 1);
+    localStorage.setItem('usersList', JSON.stringify(usersList));
     
-    ReadData();
-
+    let node = document.querySelector(".fila");
+    node.parentNode.removeChild(node);
 }
 
-function editData(index){
-    document.getElementById('btnAdd').style.display = 'none';
-    document.getElementById('btnUpdate').style.display ='block';
-
-    let listPeople;
-
-    if (localStorage.getItem('listPeople') == null){
-        listPeople = [];
-    }else{
-        listPeople = JSON.parse(localStorage.getItem('listPeople'));
-    }
-
-    document.getElementById('inputEmail').value = listPeople[index].email;
-    document.getElementById('inputName').value = listPeople[index].name;
-    document.getElementById('inputPhone').value = listPeople[index].phone;
-
-    document.querySelector('btnUpdate').onclick = function () {
-        if(ValidateForm() == true) {
-            listPeople[index].email = document.getElementById('inputEmail').value;
-            listPeople[index].name = document.getElementById('inputName').value;
-            listPeople[index].phone = document.getElementById('inputPhone').value;
-            
-            localStorage.setItem('listPeople', JSON.stringify(listPeople));
-            ReadData();
-
-
-            document.getElementById('inputEmail').value = **;
-            document.getElementById('inputName').value = **;
-            document.getElementById('inputPhone').value = **;
-
-            document.getElementById('btnAdd').style.display = 'block';
-            document.getElementById('btnUpdate').style.display ='none';
-
-        }
-    }
-} 
-
-    
+showData();
