@@ -37,7 +37,7 @@ function addData(event) {
 
     if (name === "" || email === "") return;
 
-    const usuario = new Usuario(name, email, phone); // {name: 'matias', email: 'blabla}
+    const usuario = new Usuario(name, email, phone); 
     console.log(usuario)
     let usersList;
     if (localStorage.getItem("usersList") === null) {
